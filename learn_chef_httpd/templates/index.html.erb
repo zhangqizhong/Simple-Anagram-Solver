@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script>
+//string permutation
+
+function permutation(start, string) {
+
+    //base case
+    if (string.length >= 8 ){
+    	alert("String length is too long!");
+        return false;
+    }
+
+    if ( string.length == 1 ) {
+        return [ start + string ];
+    } else {
+
+        var returnResult = [];
+        for (var i=0; i < string.length; i++) {
+            var result = permutation (string[i], string.substr(0, i) + string.substr(i+1));
+            for (var j=0; j<result.length; j++) {
+                returnResult.push(start + result[j]);
+            }
+        }
+	document.getElementById("demo").innerHTML = "Result is: "+returnResult;
+    return returnResult;
+    }
+}
+</script>
+</head>
+
+<body>
+
+<h1>Simple Anagram Solver!</h1>
+
+<p>Word or phrase to be solved:</p>
+<input type="text" autocomplete="on" id="enterArray" style="width:400px;height:40px;line-height:40px;padding:2px;font-size:16px;" />
+<button id="submit">Try It</button>
+
+<script type="text/javascript">
+  document.getElementById('submit').onclick = function(event) {
+var arr = document.getElementById('enterArray').value;
+permutation('',arr);
+}
+</script>
+
+<p id="demo">Result is:</p>
+
+</body>
+
+</html>
